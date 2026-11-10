@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#40142e">
+  <title>WheeBuy spreadsheet | Produktlinks, Größen und QC-Fotos</title>
+  <meta name="description" content="Deutschsprachiger Ratgeber zum WheeBuy spreadsheet. Finde passende Kategorien und vergleiche Produktlinks, Größenangaben, QC-Fotos und Versandkosten.">
+  <!-- Recherche für die Redaktion. Die Google-Ergebnisseite war nicht abrufbar.
+       Die Ersatzrecherche umfasste zehn Treffer zur selben Suchanfrage ohne bestätigte Google-Platzierung.
+       Geprüfte Seiten: sopel.fit, chinagrails.com, whee-buy.net, qcradar.com, usfansyupoo.com,
+       grails.fit, wheespreadsheet.com, mixfittio.com, one-to-oneyupoo.com und wheebuyspreadsheet.com.
+       Vier Nebenbegriffe: WheeBuy Produktlinks, WheeBuy Größenvergleich, WheeBuy QC-Fotos, WheeBuy Versandkosten.
+       24 im Text abgedeckte Suchphrasen: WheeBuy Produktlinks prüfen, Weidian-Produktlink, Taobao-Angebot, aktueller Lagerbestand,
+       abgelaufener Link, Suche nach Modellnummer, WheeBuy Größenvergleich vorbereiten, Fußlänge in Zentimetern,
+       Zentimetertabelle der konkreten Variante, Brustweite und Rückenlänge, Schulterbreite und Ärmellänge,
+       Bundweite und Innenbeinlänge, Kopfumfang für Kappen, WheeBuy QC-Fotos richtig lesen, Fotos zur Qualitätskontrolle,
+       Sohlenfoto und Größenetikett, Nahaufnahmen von Nähten, Detailfotos vom Verschluss, Echtheitsnachweis für Schmuck,
+       WheeBuy Versandkosten vergleichen, Zielland im Versandrechner, Paketgewicht und Außenmaße,
+       mögliche Einfuhrkosten, Rückgabebedingungen vor dem Kauf. -->
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #fffaf2; --white: #fff; --ink: #281722; --plum: #40142e;
+      --accent: #922744; --soft: #634e58; --line: #e6d6db; --rose: #f6e3e6;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 1rem/1.6 system-ui, sans-serif; }
+    a { color: var(--accent); text-underline-offset: .2em; }
+    a:focus-visible, summary:focus-visible { outline: 3px solid #b63c5b; outline-offset: 4px; }
+    img { display: block; max-width: 100%; }
+    figure, ul, ol, p { margin: 0; }
+    h1, h2, h3 { margin: 0; line-height: 1.14; overflow-wrap: break-word; }
+    h1, h2 { color: var(--plum); }
+    h1 { font-size: clamp(2.45rem, 7vw, 5.2rem); letter-spacing: -.055em; max-width: 11ch; }
+    h2 { font-size: clamp(1.6rem, 4vw, 2.35rem); letter-spacing: -.035em; }
+    h3 { font-size: 1.12rem; }
+    .wrap { width: min(100% - 2rem, 71rem); margin-inline: auto; }
+    header { border-top: .4rem solid var(--plum); border-bottom: 1px solid var(--line); }
+    .mast { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .4rem 1rem; padding-block: .75rem; }
+    .brand { color: var(--plum); font-weight: 800; text-decoration: none; }
+    .brand:hover { text-decoration: underline; }
+    .label { color: var(--accent); font-size: .78rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+    .lead { display: grid; gap: 1.4rem; padding-block: clamp(1.4rem, 4vw, 3rem); }
+    .intro { display: grid; align-content: center; gap: .8rem; }
+    .intro p:not(.label) { max-width: 49ch; }
+    .categories { padding: clamp(.9rem, 2.6vw, 1.5rem); background: var(--rose); border-radius: .8rem; }
+    .categories h2 { font-size: 1.35rem; }
+    .categories ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .35rem .65rem; padding: 0; margin-top: .75rem; list-style: none; }
+    .categories a { display: block; align-content: center; min-height: 44px; padding: .3rem .45rem; border-bottom: 1px solid #d9b9c1; color: var(--plum); font-size: .94rem; font-weight: 650; overflow-wrap: anywhere; }
+    .categories a:hover { background: var(--paper); }
+    .feature { display: grid; overflow: hidden; border-radius: .85rem; background: var(--plum); color: var(--white); }
+    .feature img { width: 100%; height: auto; aspect-ratio: 645 / 420; object-fit: cover; background: #efe8eb; color: var(--ink); }
+    .feature figcaption { display: grid; align-content: center; gap: .65rem; padding: clamp(1rem, 4vw, 2rem); }
+    .feature .label, .feature h2 { color: #ffe4e9; }
+    .section { margin-block: clamp(2rem, 5vw, 4rem); }
+    .section > p { margin-top: .65rem; }
+    .guide { display: grid; padding: 0; margin-top: 1rem; list-style: none; counter-reset: steps; }
+    .guide li { display: grid; grid-template-columns: 2.4rem minmax(0, 1fr); gap: .55rem; padding-block: .9rem; border-top: 1px solid var(--line); }
+    .guide li::before { counter-increment: steps; content: counter(steps, decimal-leading-zero); color: var(--accent); font-weight: 800; }
+    .guide p { max-width: 76ch; margin-top: .35rem; }
+    .gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; margin-top: 1rem; }
+    .gallery figure { overflow: hidden; background: var(--white); border: 1px solid var(--line); border-radius: .65rem; }
+    .gallery img { width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; background: #f4eef0; color: var(--ink); }
+    .gallery figcaption { padding: .6rem .7rem; color: var(--soft); font-size: .88rem; }
+    .faq { padding: clamp(1rem, 4vw, 2rem); background: var(--white); border: 1px solid var(--line); border-radius: .8rem; }
+    .faq h2 { margin-bottom: .65rem; }
+    .faq details + details { border-top: 1px solid var(--line); }
+    .faq summary { padding-block: .72rem; cursor: pointer; font-weight: 700; }
+    .faq details p { padding-bottom: .85rem; }
+    footer { border-top: 1px solid var(--line); color: var(--soft); padding-block: 1rem; font-size: .92rem; }
+    @media (min-width: 48rem) {
+      .lead { grid-template-columns: 1.1fr 1fr; align-items: center; }
+      .feature { grid-template-columns: 1.2fr 1fr; }
+      .gallery { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "inLanguage": "de",
+    "name": "WheeBuy spreadsheet",
+    "description": "Deutschsprachiger Ratgeber zum WheeBuy spreadsheet. Finde passende Kategorien und vergleiche Produktlinks, Größenangaben, QC-Fotos und Versandkosten.",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was ist ein WheeBuy spreadsheet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein WheeBuy spreadsheet ist eine Übersicht mit Produktverweisen für die Suche und den Vergleich. Die aktuelle Variante und Verfügbarkeit prüfst du auf der jeweiligen Angebotsseite."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie finde ich die passende Schuhgröße?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Miss beide Füße und vergleiche den längeren Fuß mit der Zentimetertabelle der konkreten Variante. Prüfe dabei, ob die Tabelle Fußlänge oder Innenlänge angibt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was zeigen QC-Fotos?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "QC-Fotos können sichtbare Details wie Farbe, Nähte, Sohlen und Etiketten zeigen. Für einen Echtheitsnachweis brauchst du zusätzliche Unterlagen zur Herkunft."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wohin führen die Kategorien auf dieser Seite?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Kategorien führen zu den jeweiligen Rubriken von HipoBuyFind. Dieser deutschsprachige Ratgeber bietet Hinweise zur Produktsuche und zum Vergleich."
+        }
+      }
+    ]
+  }
+  </script>
+<link rel="canonical" href="https://kakobuyfinds.github.io/nxexp/">
+</head>
+<body>
+  <header>
+    <div class="wrap mast">
+      <a class="brand" href="https://www.hipobuyfind.com">www.hipobuyfind.com</a>
+      <span class="label">Einkaufsratgeber · Deutsch</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="lead">
+      <section class="intro" aria-labelledby="titel">
+        <p class="label">Von der Kategorie zur engeren Auswahl</p>
+        <h1 id="titel">WheeBuy spreadsheet</h1>
+        <p>Ein WheeBuy spreadsheet ist eine Übersicht mit Produktverweisen für die Suche und den Vergleich. Die aktuelle Variante und Verfügbarkeit prüfst du auf der jeweiligen Angebotsseite.</p>
+      </section>
+
+      <nav class="categories" aria-labelledby="kategorien">
+        <h2 id="kategorien">Kategorien bei HipoBuyFind</h2>
+        <ul>
+          <li><a href="https://hipobuyfind.com/category-911-Shoes.html">Schuhe</a></li>
+          <li><a href="https://hipobuyfind.com/category-912-Hoodies%2FSweaters.html">Hoodies &amp; Pullover</a></li>
+          <li><a href="https://hipobuyfind.com/category-913-T-Shirts.html">T-Shirts</a></li>
+          <li><a href="https://hipobuyfind.com/category-914-Jackets.html">Jacken</a></li>
+          <li><a href="https://hipobuyfind.com/category-915-Pants%2FShorts.html">Hosen &amp; Shorts</a></li>
+          <li><a href="https://hipobuyfind.com/category-916-Headwear.html">Kopfbedeckungen</a></li>
+          <li><a href="https://hipobuyfind.com/category-917-Sets.html">Sets</a></li>
+          <li><a href="https://hipobuyfind.com/category-918-underwear%2Funderpants.html">Unterwäsche</a></li>
+          <li><a href="https://hipobuyfind.com/category-919-Jersey.html">Trikots</a></li>
+          <li><a href="https://hipobuyfind.com/category-920-Accessories.html">Accessoires</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <figure class="feature">
+      <img src="https://www.datocms-assets.com/24293/1669639433-nike-zoom-vomero-5-photon-dust-chrome-gridiron-sail-fd0884-025-release-date-4.jpg?fm=jpg&amp;max-h=420&amp;max-w=645" width="645" height="420" alt="Nike Zoom Vomero 5 Photon Dust mit grauem Mesh und silberfarbenen Einsätzen" loading="eager" fetchpriority="high">
+      <figcaption>
+        <p class="label">Bildbeispiel · Nike Zoom Vomero 5</p>
+        <h2>Bei Sneakern zählt die genaue Variante</h2>
+        <p>Halte Modellnummer, Farbvariante und Größe zusammen fest. Beim Vergleich helfen eine seitliche Aufnahme, ein Sohlenfoto und ein lesbares Größenetikett.</p>
+      </figcaption>
+    </figure>
+
+    <section class="section" aria-labelledby="ratgeber">
+      <p class="label">Vier Kurzratgeber</p>
+      <h2 id="ratgeber">Vom Produktlink bis zur Versandfrage</h2>
+      <ol class="guide">
+        <li>
+          <article>
+            <h3>WheeBuy Produktlinks prüfen</h3>
+            <p>Vergleiche bei einem Weidian-Produktlink oder Taobao-Angebot die Artikelnummer, die ausgewählte Farbe und den aktuellen Lagerbestand. Suche bei einem abgelaufenen Link nach der Modellnummer und prüfe beim Ersatzangebot dieselben Merkmale.</p>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h3>WheeBuy Größenvergleich vorbereiten</h3>
+            <p>Miss für Sneaker deine Fußlänge in Zentimetern. Lege für Hoodies und T-Shirts ein gut sitzendes Stück flach hin und miss Brustweite und Rückenlänge. Bei Jacken helfen Schulterbreite und Ärmellänge, bei Hosen Bundweite und Innenbeinlänge. Für eine Kappe ist der Kopfumfang das wichtigste Maß.</p>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h3>WheeBuy QC-Fotos richtig lesen</h3>
+            <p>Ordne Fotos zur Qualitätskontrolle zuerst der richtigen Farbe und Größe zu. Suche bei Kleidungsstücken nach Nahaufnahmen von Nähten, Bündchen und Reißverschlüssen. Bei Schmuck helfen Detailfotos vom Verschluss sowie Angaben zu Material und Abmessungen.</p>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h3>WheeBuy Versandkosten vergleichen</h3>
+            <p>Nutze für Deutschland, Österreich oder die Schweiz das tatsächliche Zielland im Versandrechner. Halte Warenpreis, Servicegebühr und Versandkosten getrennt fest. Vergleiche Versandoptionen anhand von Paketgewicht und Außenmaßen und prüfe vor dem Kauf mögliche Einfuhrkosten und die Rückgabebedingungen.</p>
+          </article>
+        </li>
+      </ol>
+    </section>
+
+    <section class="section" aria-labelledby="bilder">
+      <h2 id="bilder">Vier Beispiele für den Detailvergleich</h2>
+      <p>Die Markenbilder dienen der Orientierung. Für ein konkretes Angebot prüfst du dessen eigene Fotos und Maße.</p>
+      <div class="gallery">
+        <figure>
+          <img src="https://www.crepslocker.com/cdn/shop/files/Dior-CD-Icon-Black-Sweatshirt-Crepslocker-back_1178ca2c-1255-4a14-8e86-bdf384c14ce4.jpg?v=1686837352" width="480" height="480" alt="Rückansicht eines schwarzen Dior CD Icon Sweatshirts mit Rundhalsausschnitt" loading="lazy" decoding="async">
+          <figcaption>Dior CD Icon · Rückenlänge und Saum</figcaption>
+        </figure>
+        <figure>
+          <img src="https://media.gucci.com/style/DarkGray_Center_0_0_490x490/1680222607/200035_KQWBG_9791_003_100_0000_Light-Original-GG-canvas-baseball-hat-with-Web.jpg" width="490" height="490" alt="Beige Gucci Baseballkappe aus GG-Canvas mit grün-rotem Webstreifen" loading="lazy" decoding="async">
+          <figcaption>Gucci GG Canvas · Schirm und Kopfumfang</figcaption>
+        </figure>
+        <figure>
+          <img src="https://images.auctionet.com/thumbs/large_item_5409865_1902aca874a4fe0a752aaed74ff97a1b.jpg" width="480" height="480" alt="Silberfarbener Hermès Chaîne d’Ancre Enchaînée Ring mit Ankergliedern" loading="lazy" decoding="async">
+          <figcaption>Hermès Chaîne d’Ancre · Ringweite und Glieder</figcaption>
+        </figure>
+        <figure>
+          <img src="https://ca.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-keepall-bandouliere-45--M41418_PM1_Side%20view.jpg" width="480" height="480" alt="Braune Louis Vuitton Keepall Bandoulière 45 im Monogram-Muster mit hellen Ledergriffen" loading="lazy" decoding="async">
+          <figcaption>Louis Vuitton Keepall · Taschenmaße und Griffe</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section faq" aria-labelledby="fragen">
+      <h2 id="fragen">Häufige Fragen</h2>
+      <details>
+        <summary>Was ist ein WheeBuy spreadsheet?</summary>
+        <p>Ein WheeBuy spreadsheet ist eine Übersicht mit Produktverweisen für die Suche und den Vergleich. Die aktuelle Variante und Verfügbarkeit prüfst du auf der jeweiligen Angebotsseite.</p>
+      </details>
+      <details>
+        <summary>Wie finde ich die passende Schuhgröße?</summary>
+        <p>Miss beide Füße und vergleiche den längeren Fuß mit der Zentimetertabelle der konkreten Variante. Prüfe dabei, ob die Tabelle Fußlänge oder Innenlänge angibt.</p>
+      </details>
+      <details>
+        <summary>Was zeigen QC-Fotos?</summary>
+        <p>QC-Fotos können sichtbare Details wie Farbe, Nähte, Sohlen und Etiketten zeigen. Für einen Echtheitsnachweis brauchst du zusätzliche Unterlagen zur Herkunft.</p>
+      </details>
+      <details>
+        <summary>Wohin führen die Kategorien auf dieser Seite?</summary>
+        <p>Die Kategorien führen zu den jeweiligen Rubriken von HipoBuyFind. Dieser deutschsprachige Ratgeber bietet Hinweise zur Produktsuche und zum Vergleich.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap mast">
+      <p>Eigenständiger Einkaufsratgeber mit Kategorien bei HipoBuyFind.</p>
+      <a href="https://www.hipobuyfind.com">Zu HipoBuyFind</a>
+    </div>
+  </footer>
+</body>
+</html>
